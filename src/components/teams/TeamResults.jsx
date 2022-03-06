@@ -1,3 +1,4 @@
+import Pagination from '../layouts/Pagination'
 import Spinner from '../layouts/Spinner'
 import TeamList from './TeamList'
 
@@ -10,43 +11,19 @@ function TeamResults(
         pagination,
         loading
     }) {
-    const prevClick = () => {
-        setLoading(true)        
-        if (searchTerm) {
-            setPagination(pagination - 1)
-        } else {
-            alert("Please enter team's name")
-        }
-        if(pagination === 0) {        
-            return
-        }
-    }
-
-    const nextClick = () => {
-        setLoading(true)
-        if(searchTerm){
-            setPagination(pagination + 1)
-            
-        } else {
-            alert("Please enter team's name")
-        }       
-    }
-
-    const Pagination = () => {
-        return (
-            <div className="btn-group grid grid-cols-1 xl:grid-cols-2 
-                lg:grid-cols-2 md:grid-cols-2 mt-2">
-                <button onClick={prevClick} className="btn btn-md w-36 btn-outline">Previous page</button>
-                <button onClick={nextClick} className="btn btn-md w-36 btn-outline">Next Page</button>
-            </div>
-        )
-    }
 
     if (!loading) { return (
         <div>
-        {(allTeamPlayers.length === 0 && allPlayers > 0) 
-                && <p>There is no player name on this page, click next.</p>
-            }
+        {
+            (allTeamPlayers.length === 0 && allPlayers.length > 0) 
+            ? <p>There is no player name on this page, click next page.</p> 
+            : (allTeamPlayers.length === 0 && allPlayers.length === 0) ? ''
+            : (allTeamPlayers.length > 0 && allPlayers.length > 0) ? 
+                <p>Click next page to see more players</p>
+            : (allTeamPlayers.length === allPlayers.length ) ? 
+                <p>Last Player, click previous page to see previous players</p>
+            : ''
+        }
             <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
                 {(allTeamPlayers.map((player, index) => {
                     return (                    
@@ -55,15 +32,15 @@ function TeamResults(
                   }))
                 }           
             </div>
-            {(allPlayers.length > 0) && <Pagination />}         
-                           
+            {(allPlayers.length > 0) && <Pagination 
+                setPagination={setPagination} 
+                searchTerm={searchTerm}
+                setLoading={setLoading}
+                pagination={pagination} />}
         </div>        
     ) } else {
         return <Spinner />
-    }  
-
-
-    
+    }    
 }
 
 export default TeamResults
