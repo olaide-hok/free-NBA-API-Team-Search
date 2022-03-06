@@ -26,7 +26,7 @@ function Pagination({searchTerm, pagination, setLoading,setPagination}) {
 
   return (
     <div className="btn-group grid grid-cols-1 xl:grid-cols-2 
-        lg:grid-cols-2 md:grid-cols-2 mt-2">
+        lg:grid-cols-2 md:grid-cols-2 mt-4">
         <button onClick={prevClick} className="btn btn-md w-36 btn-outline">Previous page</button>
         <button onClick={nextClick} className="btn btn-md w-36 btn-outline">Next Page</button>
     </div>

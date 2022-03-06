@@ -16,12 +16,12 @@ function TeamResults(
         <div>
         {
             (allTeamPlayers.length === 0 && allPlayers.length > 0) 
-            ? <p>There is no player name on this page, click next page.</p> 
+            ? <p className='mb-4'>There is no player name on this page, click next page.</p> 
             : (allTeamPlayers.length === 0 && allPlayers.length === 0) ? ''
             : (allTeamPlayers.length > 0 && allPlayers.length > 0) ? 
-                <p>Click next page to see more players</p>
+                <p className='mb-4'>Click next page to see more players</p>
             : (allTeamPlayers.length === allPlayers.length ) ? 
-                <p>Last Player, click previous page to see previous players</p>
+                <p className='mb-4'>Last Player, click previous page to see previous players</p>
             : ''
         }
             <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
