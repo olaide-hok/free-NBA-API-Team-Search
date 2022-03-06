@@ -44,9 +44,9 @@ function TeamResults(
 
     if (!loading) { return (
         <div>
-            {(allTeamPlayers.length === 0 && allPlayers > 0) 
-                    && <p>There is no player name on this page, click next.</p>
-                     }
+        {(allTeamPlayers.length === 0 && allPlayers > 0) 
+                && <p>There is no player name on this page, click next.</p>
+            }
             <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
                 {(allTeamPlayers.map((player, index) => {
                     return (                    
