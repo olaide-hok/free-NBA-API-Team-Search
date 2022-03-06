@@ -55,7 +55,8 @@ function TeamResults(
                   }))
                 }           
             </div>
-            {(allPlayers.length > 0) && <Pagination />} 
+            {(allPlayers.length > 0) && <Pagination />}         
+                           
         </div>        
     ) } else {
         return <Spinner />
