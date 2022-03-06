@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import TeamResults from "../teams/TeamResults"
 import TeamSearch from "../teams/TeamSearch"
+
 const FREE_NBA_API_URL = process.env.REACT_APP_FREE_NBA_API_URL
 const FREE_NBA_API_KEY = process.env.REACT_APP_FREE_NBA_API_KEY
 
@@ -19,6 +20,7 @@ function Home() {
     const prevSearchIdRef = useRef()
 
     const clearPlayers = () => {
+      setAllPlayers([])
       setTeamPlayers([])
       setPagination(1)
       setSearchTerm('')
@@ -84,6 +86,7 @@ function Home() {
       <TeamResults 
         setPagination={setPagination}
         setLoading={setLoading}
+        allPlayers={allPlayers}
         allTeamPlayers={allTeamPlayers}
         searchTerm={searchTerm}
         pagination={pagination}

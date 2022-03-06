@@ -2,14 +2,14 @@ import Spinner from '../layouts/Spinner'
 import TeamList from './TeamList'
 
 function TeamResults(
-    {   allTeamPlayers,
+    {   allPlayers,
+        allTeamPlayers,
         setPagination,
         searchTerm,
         setLoading,
         pagination,
         loading
     }) {
-
     const prevClick = () => {
         setLoading(true)        
         if (searchTerm) {
@@ -17,8 +17,7 @@ function TeamResults(
         } else {
             alert("Please enter team's name")
         }
-        if(pagination === 0) {
-        
+        if(pagination === 0) {        
             return
         }
     }
@@ -45,25 +44,18 @@ function TeamResults(
 
     if (!loading) { return (
         <div>
-            
-            {pagination}
-            {searchTerm}
-            <h1>Results</h1>
-                
-                <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
-                    {(allTeamPlayers.length === 0) 
-                        ? <p>There is no player name on this page, click next.</p>
-                        :                
-                        (allTeamPlayers.map((player, index) => {
-                            return (                    
-                                <TeamList player={player} key={index}/>
-                            )
-                        }))
-                    }           
-                </div>
-                {(allTeamPlayers.length > 0) && <Pagination />}            
-                  
-                           
+            {(allTeamPlayers.length === 0 && allPlayers > 0) 
+                    && <p>There is no player name on this page, click next.</p>
+                     }
+            <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
+                {(allTeamPlayers.map((player, index) => {
+                    return (                    
+                        <TeamList player={player} key={index}/>
+                    )
+                  }))
+                }           
+            </div>
+            {(allPlayers.length > 0) && <Pagination />} 
         </div>        
     ) } else {
         return <Spinner />
